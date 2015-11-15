@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary Source="ms-appx:///Neumann.HelpFrame/HelpLayer.xaml" />
+        <ResourceDictionary Source="ms-appx:///Neumann.HelpFrame/HelpFrame.xaml" />
+        <ResourceDictionary Source="ms-appx:///Neumann.HelpFrame/SketchStyle.xaml" />
+        <ResourceDictionary Source="ms-appx:///Neumann.HelpFrame/Balloon.xaml" />
+    
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

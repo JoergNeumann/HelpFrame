@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:hf="using:Neumann.HelpFrame">
+
+    <Style TargetType="hf:Balloon">
+        <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+    
+    <DataTemplate x:Key="PopupTopTemplate">
+        <hf:Balloon Content="{Binding}" ArrowDirection="Down" MaxWidth="300" Margin="0,0,0,5"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PopupBottomTemplate">
+        <hf:Balloon Content="{Binding}" ArrowDirection="Up" MaxWidth="300" Margin="0,5,0,0"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PopupLeftTemplate">
+        <hf:Balloon Content="{Binding}" ArrowDirection="Right" MaxWidth="300" Margin="0,5,0,0"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="PopupRightTemplate">
+        <hf:Balloon Content="{Binding}" ArrowDirection="Left" MaxWidth="300" Margin="5,0,0,0"/>
+    </DataTemplate>
+
+    <Style TargetType="hf:HelpFrame">
+        <Setter Property="TopTemplate" Value="{StaticResource PopupTopTemplate}"/>
+        <Setter Property="BottomTemplate" Value="{StaticResource PopupBottomTemplate}"/>
+        <Setter Property="LeftTemplate" Value="{StaticResource PopupLeftTemplate}"/>
+        <Setter Property="RightTemplate" Value="{StaticResource PopupRightTemplate}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>

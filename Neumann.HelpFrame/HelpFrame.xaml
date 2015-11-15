@@ -1,0 +1,162 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:Neumann.HelpFrame">
+    
+    <DataTemplate x:Key="TopTemplate">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="65" Height="65"
+                  Stroke="#FFF99F01"
+                  StrokeThickness="4"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Stretch="Fill"
+                  Data="M435,78 C435,78 343.5,69 343.5,169.5"/>
+            
+            <TextBlock Margin="10,-10,0,0"
+                       MaxWidth="300"
+                       TextWrapping="WrapWholeWords"
+                       Text="{Binding}"/>
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="BottomTemplate">
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+            
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="65" Height="65"
+                  Stroke="#FFF99F01"
+                  StrokeThickness="4"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Stretch="Fill"
+                  RenderTransformOrigin="0.5,0.5"
+                  Data="M435,78 C435,78 343.5,69 343.5,169.5">
+                <Path.RenderTransform>
+                    <CompositeTransform Rotation="180" ScaleX="-1"/>
+                </Path.RenderTransform>
+            </Path>
+            
+            <TextBlock Margin="10,0,0,-15"
+                       MaxWidth="300"
+                       TextWrapping="WrapWholeWords"
+                       Text="{Binding}"
+                       VerticalAlignment="Bottom"/>
+            
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="LeftTemplate">
+        <StackPanel Orientation="Vertical" Margin="0,0,-65,0">
+
+            <TextBlock Margin="0,0,0,10"
+                       MaxWidth="300"
+                       TextWrapping="WrapWholeWords"
+                       Text="{Binding}"
+                       HorizontalAlignment="Center"/>
+            
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="65" Height="65"
+                  Stroke="#FFF99F01"
+                  StrokeThickness="4"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Stretch="Fill"
+                  RenderTransformOrigin="0.5,0.5"
+                  Data="M435,78 C435,78 343.5,69 343.5,169.5">
+                <Path.RenderTransform>
+                    <CompositeTransform Rotation="180" ScaleX="-1"/>
+                </Path.RenderTransform>
+            </Path>
+
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RightTemplate">
+        <StackPanel Orientation="Vertical" Margin="-65,0,0,0">
+
+            <TextBlock Margin="0,0,0,4"
+                       MaxWidth="300"
+                       TextWrapping="WrapWholeWords"
+                       Text="{Binding}"
+                       HorizontalAlignment="Center"/>
+
+            <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="65" Height="65"
+                  Stroke="#FFF99F01"
+                  StrokeThickness="4"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Stretch="Fill"
+                  RenderTransformOrigin="0.5,0.5"
+                  Data="M435,78 C435,78 343.5,69 343.5,169.5">
+                <Path.RenderTransform>
+                    <CompositeTransform Rotation="180" TranslateX="-40" />
+                </Path.RenderTransform>
+            </Path>
+
+        </StackPanel>
+    </DataTemplate>
+    
+    <Style TargetType="local:HelpFrame">
+        <Setter Property="FontFamily" Value="Segue UI Semibold"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#FFF99F01"/>
+        <Setter Property="TopTemplate" Value="{StaticResource TopTemplate}"/>
+        <Setter Property="BottomTemplate" Value="{StaticResource BottomTemplate}"/>
+        <Setter Property="LeftTemplate" Value="{StaticResource LeftTemplate}"/>
+        <Setter Property="RightTemplate" Value="{StaticResource RightTemplate}"/>
+        <Setter Property="ContentHorizontalAlignment" Value="Left"/>
+        <Setter Property="ContentVerticalAlignment" Value="Bottom"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HelpFrame">
+                    <Grid x:Name="PART_Container"
+                          Margin="0" Opacity="1">
+                        
+                        <ContentPresenter Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text}"
+                                          ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentTemplate}"
+                                          FontFamily="{TemplateBinding FontFamily}"
+                                          FontSize="{TemplateBinding FontSize}"
+                                          FontWeight="{TemplateBinding FontWeight}"
+                                          Foreground="{TemplateBinding Foreground}"/>
+                        
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="Common">
+                                <VisualState x:Name="Detached"/>
+                                <VisualState x:Name="Attached">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PART_Container"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.5" Duration="0:0:0.5">
+                                            <DoubleAnimation.EasingFunction>
+                                                <SineEase EasingMode="EaseIn"/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualStateGroup.Transitions>
+                                    <VisualTransition From="Attached" To="Detached">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="PART_Container"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" Duration="0:0:0.5">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <SineEase EasingMode="EaseOut"/>
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </VisualTransition>
+                                </VisualStateGroup.Transitions>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

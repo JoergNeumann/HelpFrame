@@ -1,0 +1,125 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:hf="using:Neumann.HelpFrame">
+
+  <DataTemplate x:Key="TopTemplate">
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,30">
+      <Path HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"
+        Width="65" Height="65"
+        Stroke="#FFF99F01"
+        StrokeThickness="2.5"
+        StrokeStartLineCap="Round"
+        StrokeEndLineCap="Round"
+        Stretch="Fill"
+        Data="M32.0015,1 C32.0015,1 -21.626,48.5264 12.1842,65.1564 C39.4239,78.5546 57.0029,49.912 82.366,91.209 M83.6119,90.2745 C86.3818,70.6829 86.3809,70.6835 86.3809,70.6835 M81.4242,89.9693 C65.5112,92.1773 65.5112,92.1773 65.5112,92.1773">
+        <Path.RenderTransform>
+          <CompositeTransform Rotation="40.355" TranslateX="0.11681474277497728" TranslateY="-2.3783258190364904"/>
+        </Path.RenderTransform>
+      </Path>
+      <TextBlock Margin="-40,-10,0,0"
+        MaxWidth="200"
+        TextWrapping="WrapWholeWords"
+        Text="{Binding}"/>
+    </StackPanel>
+  </DataTemplate>
+
+  <DataTemplate x:Key="BottomTemplate">
+    <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+      <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+        Width="65" Height="65" Margin="-30,-20,0,0"
+        Stroke="#FFF99F01"
+        StrokeThickness="2.5"
+        StrokeStartLineCap="Round"
+        StrokeEndLineCap="Round"
+        Stretch="Fill"
+        RenderTransformOrigin="0.5,0.5"
+        Data="M32.0015,1 C32.0015,1 -21.626,48.5264 12.1842,65.1564 C39.4239,78.5546 57.0029,49.912 82.366,91.209 M83.6119,90.2745 C86.3818,70.6829 86.3809,70.6835 86.3809,70.6835 M81.4242,89.9693 C65.5112,92.1773 65.5112,92.1773 65.5112,92.1773">
+        <Path.RenderTransform>
+          <CompositeTransform Rotation="-225" ScaleX="-1" TranslateY="14"/>
+        </Path.RenderTransform>
+      </Path>
+      <TextBlock Margin="0,40,0,-15"
+        MaxWidth="300"
+        TextWrapping="WrapWholeWords"
+        Text="{Binding}"
+        VerticalAlignment="Bottom"/>
+    </StackPanel>
+  </DataTemplate>
+
+  <DataTemplate x:Key="LeftTemplate">
+    <StackPanel Orientation="Vertical" Margin="0,0,-20,-30">
+      <StackPanel.RenderTransform>
+        <TranslateTransform Y="0" X="0"/>
+      </StackPanel.RenderTransform>
+      <TextBlock Margin="0,0,0,10"
+                  MaxWidth="300"
+                  TextWrapping="WrapWholeWords"
+                  Text="{Binding}"
+                  HorizontalAlignment="Center"/>
+      <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+        Width="65" Height="65" Margin="0,-10,0,0"
+        Stroke="#FFF99F01"
+        StrokeThickness="2.5"
+        StrokeStartLineCap="Round"
+        StrokeEndLineCap="Round"
+        Stretch="Fill"
+        RenderTransformOrigin="0.5,0.5"
+        Data="M32.0015,1 C32.0015,1 -21.626,48.5264 12.1842,65.1564 C39.4239,78.5546 57.0029,49.912 82.366,91.209 M83.6119,90.2745 C86.3818,70.6829 86.3809,70.6835 86.3809,70.6835 M81.4242,89.9693 C65.5112,92.1773 65.5112,92.1773 65.5112,92.1773">
+        <Path.RenderTransform>
+          <CompositeTransform Rotation="138" ScaleY="-1" ScaleX="-1"/>
+        </Path.RenderTransform>
+      </Path>
+    </StackPanel>
+  </DataTemplate>
+
+  <DataTemplate x:Key="RightTemplate">
+    <StackPanel Orientation="Vertical" Margin="-65,0,0,-30">
+      <TextBlock Margin="30,0,0,0"
+        MaxWidth="300"
+        TextWrapping="WrapWholeWords"
+        Text="{Binding}"
+        HorizontalAlignment="Center"/>
+      <Path HorizontalAlignment="Center" VerticalAlignment="Center"
+        Width="65" Height="65"
+        Stroke="#FFF99F01"
+        StrokeThickness="2.5"
+        StrokeStartLineCap="Round"
+        StrokeEndLineCap="Round"
+        Stretch="Fill"
+        RenderTransformOrigin="0.5,0.5"
+        Data="M32.0015,1 C32.0015,1 -21.626,48.5264 12.1842,65.1564 C39.4239,78.5546 57.0029,49.912 82.366,91.209 M83.6119,90.2745 C86.3818,70.6829 86.3809,70.6835 86.3809,70.6835 M81.4242,89.9693 C65.5112,92.1773 65.5112,92.1773 65.5112,92.1773">
+        <Path.RenderTransform>
+          <CompositeTransform Rotation="-138" ScaleY="-1" TranslateX="-20" TranslateY="-10"/>
+        </Path.RenderTransform>
+      </Path>
+    </StackPanel>
+  </DataTemplate>
+
+  <Style x:Key="SketchTemplate" TargetType="hf:HelpFrame">
+    <Setter Property="TopTemplate" Value="{StaticResource TopTemplate}"/>
+    <Setter Property="BottomTemplate" Value="{StaticResource BottomTemplate}"/>
+    <Setter Property="LeftTemplate" Value="{StaticResource LeftTemplate}"/>
+    <Setter Property="RightTemplate" Value="{StaticResource RightTemplate}"/>
+    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+    <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+    <Setter Property="FontFamily" Value="Buxton Sketch"/>
+    <Setter Property="FontSize" Value="24"/>
+    <Setter Property="FontWeight" Value="Normal"/>
+  </Style>
+
+  <Style TargetType="hf:HelpLayer">
+    <Setter Property="ContentTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <Button Content="Schließen" RequestedTheme="Dark"
+                  HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                  Margin="30" Padding="10"
+                  Foreground="#FFF99F01" BorderBrush="#FFF99F01" BorderThickness="2.5"
+                  FontFamily="Buxton Sketch" FontSize="24" FontWeight="Normal"
+                  Command="{Binding CloseCommand}"/>
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

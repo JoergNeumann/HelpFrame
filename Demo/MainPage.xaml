@@ -1,0 +1,72 @@
+﻿<Page x:Class="Demo.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Demo"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+      xmlns:hf="using:Neumann.HelpFrame"
+      hf:HelpFrame.ShowHelp="{Binding ShowHelp, Mode=TwoWay}"
+      hf:HelpFrame.ShowBackgroundLayer="{Binding ShowBackgroundLayer, Mode=TwoWay}"
+      hf:HelpFrame.DisplayStyle="{Binding DisplayStyle, Mode=TwoWay}">
+
+    <Page.DataContext>
+        <local:MainViewModel/>
+    </Page.DataContext>
+
+    <Grid x:Name="grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Light">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Help-->
+        <Button Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                Content="Hilfe"
+                Command="{Binding ShowCommand}"
+                hf:HelpFrame.HelpText="Hier klicken um die Hilfe anzuzeigen."
+                hf:HelpFrame.Alignment="{Binding ElementName=DirectionCombo, Path=SelectedItem, Converter={StaticResource alignmentConverter}}"/>
+
+        <StackPanel Margin="40">
+
+            <!--Display Style-->
+            <TextBlock Text="Display Style:" Style="{StaticResource TitleTextBlockStyle}" Margin="20,20,0,0"/>
+            <ComboBox x:Name="DisplayStyleCombo" MinWidth="140"
+                      SelectedIndex="{Binding DisplayStyle, Converter={StaticResource displayStyleConverter}, Mode=TwoWay}"
+                      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"
+                      hf:HelpFrame.HelpText="Wählen Sie hier den Anzeigestil."
+                      hf:HelpFrame.Alignment="TopCenter"
+                      hf:HelpFrame.FrameMargin="0,20,0,0">
+                <ComboBoxItem>Classic</ComboBoxItem>
+                <ComboBoxItem>Sketch</ComboBoxItem>
+                <ComboBoxItem>Popup</ComboBoxItem>
+            </ComboBox>
+
+            <!--Arrow Direction-->
+            <TextBlock Text="Arrow Direction:" Style="{StaticResource TitleTextBlockStyle}" Margin="20,60,0,0"/>
+            <ComboBox x:Name="DirectionCombo"
+                      SelectedIndex="1" MinWidth="140"
+                      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"
+                      hf:HelpFrame.HelpText="Wählen Sie hier die Ausrichtung."
+                      hf:HelpFrame.Alignment="CenterRight"
+                      hf:HelpFrame.FrameMargin="10,10,0,0">
+                <ComboBoxItem>TopLeft</ComboBoxItem>
+                <ComboBoxItem>TopCenter</ComboBoxItem>
+                <ComboBoxItem>TopRight</ComboBoxItem>
+                <ComboBoxItem>CenterLeft</ComboBoxItem>
+                <ComboBoxItem>CenterCenter</ComboBoxItem>
+                <ComboBoxItem>CenterRight</ComboBoxItem>
+                <ComboBoxItem>BottomLeft</ComboBoxItem>
+                <ComboBoxItem>BottomCenter</ComboBoxItem>
+                <ComboBoxItem>BottomRight</ComboBoxItem>
+            </ComboBox>
+
+            <!--Background Layer-->
+            <TextBlock Text="Background Layer:" Style="{StaticResource TitleTextBlockStyle}" Margin="20,60,0,0"/>
+            <ToggleSwitch IsOn="{Binding ShowBackgroundLayer, Mode=TwoWay}"
+                          OnContent="Show" Margin="16,0,0,0"
+                          OffContent="Don't show"
+                          hf:HelpFrame.HelpText="Wählen Sie hier aus, ob ein halbtransparenter Layer über die Oberfläche gelegt werden soll."
+                          hf:HelpFrame.Alignment="BottomCenter"/>
+        </StackPanel>
+    </Grid>
+</Page>
